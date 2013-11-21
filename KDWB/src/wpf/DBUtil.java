@@ -2,6 +2,60 @@ package wpf;
 //DBUtil ï¿½ï¿½ï¿?  P79 80
 //kehua
 
+  package wpf;
+  import static wpf.ConstabtUtil.*;
+  ...
+  import java.util.ArrayList;
+  public classDBUtil{
+    public static Connection Connection(){
+          Connection con =null;
+          try{
+           Context inintial=new InitialContext();
+          DataSource ds =(DataSource)inintial.lookup("java:comp/env/jdbc/mysql");
+          con=ds.getConnectionb()
+          }
+          catch(Exception e{
+              e.printStackTrace();
+          }
+   public static ArrayList<String>checkLogin(String u_no,String u_pwd){
+
+        ArrayList<String>result=new ArrayList<String>();
+        Connection con =null;
+        PreparedStatenent ps null;
+        ResultSet rs = null;
+        try{
+            con =getConnection();
+            if(con== null){
+               result.add(CONNECTION_OUT);
+               return result;
+             }
+             ps = con.prepareStatement("select u_no,u_name,u_email,u_state,h_id from user
+                                             where u_no=?and u_pwd=?");
+             ps.setString(1,u_no);
+            ps.setString(2,u_pwd);
+             rs = ps.executeQuery();
+             if(rs.next()){
+                 for(int i=1;i<5:i++){
+                   result.(rs.getString(i));
+                   }
+                }else{
+                   result.add(LOGIN_FAIL);
+                   }
+             }catch(Exception e){e.printStackTrace();}
+             finally{
+                try{if(rs !=null){rs.close(); rs =null;}}
+                catch(Exception e){e.printStackTrce();}
+                try{if(ps !=null){ps.close(); ps =null;}}
+                catch(Exception e){e.printStackTrce();}
+                try{if(con !=null){con.close(); con =null;}}
+                catch(Exception e){e.printStackTrce();}
+                }
+             return result;
+             }
+  ...
+  }
+   
+
 public static String registerUser(String u_name,String u_pwd,String u_email,String u_state,String h_id){
 	String result=null;
 	Connection con=null;
