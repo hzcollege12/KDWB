@@ -1,4 +1,5 @@
-//DBUtil ���   P79 80
+package wpf;
+//DBUtil ���?  P79 80
 //kehua
 
 public static String registerUser(String u_name,String u_pwd,String u_email,String u_state,String h_id){
@@ -44,7 +45,7 @@ public static String registerUser(String u_name,String u_pwd,String u_email,Stri
 }
 
 //DBUtil.java    80ҳ
-//13 李富涛
+//13 李富�?
 
 public static sychronized int getMax(String table){
 	int max=-1;
