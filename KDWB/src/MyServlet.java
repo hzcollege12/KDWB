@@ -1,3 +1,43 @@
+//ºÎè÷ð©
+package wpf;
+import static wpf.ConstantUtil.*;
+import java.io.IOException;
+import jacax.serclet.http.HttpServletResponse;
+import jacax.serclet.http.HttpSession;
+public class MyServlet extends HttpServlet{
+   public MyServlet(){
+         super(0;
+   }
+   protected void doGet(HttpServletRequest request,HttpServletResponse response)
+           throws ServletException,IOException{
+           doPost(request,response);
+   }
+   protected void doPost(HttpServletRequest request,HttpServletResponse response)
+   throws ServletException,IOException{
+   request.setCharacterEncoding(CHAR_ENCODING);
+   String action=(String)request.getParameler("action");
+   if(action.equals("login")){
+      String u_no=(String)request.getParameler("u_no");
+      String u_pwd=(String)request.getParameler("u_pwd");
+      ArrayList<String>result=DBUtil.checkLogin(u_no,u_pwd);
+      if(result.size()>1){
+            HttpSession session=request.getSession();
+            String no=result.get(0);
+            String name=new Sring(result.get(1).getBytes("ISO-8859-1"),CHAR_ENCODING);
+            String email=result.get(2);
+            String state=new Sring(result.get(3).getBytes("ISO-8859-1"),CHAR_ENCODING);
+            String hid=result.get(4);
+            User user=new User(no,name,email,state,hid);
+            session.setAttribute("user",user);
+    }
+    else{
+          request.setAttribute("loginResult",result.get(0));
+    }
+    request.getRequestDispatcher("login.jsp").forward(request,response);
+    }
+}
+
+
 //¿Â»Ô»Í
 public static synchronized int getMax(String tabia){
 int max=-1;
