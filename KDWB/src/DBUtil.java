@@ -1,4 +1,6 @@
-//DBUtil Àî·æ   P79 80
+//DBUtil ï¿½ï¿½ï¿½   P79 80
+//kehua
+
 public static String registerUser(String u_name,String u_pwd,String u_email,String u_state,String h_id){
 	String result=null;
 	Connection con=null;
