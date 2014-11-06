@@ -39,3 +39,36 @@ public static String registerUser(String u_name,String u_pwd,String u_email,Stri
 		}
 		return result;
 }
+
+//DBUtil.java    80ҳ
+//13 李富涛
+
+public static sychronized int getMax(String table){
+	int max=-1;
+	Connection con =null;
+	Statement st =null;
+	ResultSet rs =null;
+	try{
+		con = getConnection();
+		st = con.createStatement();
+		String sql="update set"+table+"+1";
+		st.executeUpdate(sql);
+		rs =st.executeQuery("select"+"table"+"from max");
+		if(rs.next()){
+			max = rs.getInt(1);
+			return max;
+			}
+		}catch(Exception e){e.printStackTrace();}
+		finally{
+			try{
+			if(rs!=null){rs.close();rs =null;}
+			}catch(Exception e){e.printStackTrace();}
+			try{
+			if(st!=null){st.close();st =null;}
+			}catch(Exception e){e.printStackTrace();}
+			try{
+			if(con!=null){con.close();con =null;}
+			}catch(Exception e){e.printStackTrace();}
+			}
+	return max;
+}
