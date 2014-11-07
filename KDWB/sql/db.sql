@@ -7,14 +7,14 @@ create table user(			// 44号古参林 P45-P49页数据库
 	u_email VARCHAR(18),
 	u_state TINYTEXT,
 	h_id  INT,
-	PRIMARY KEY(n_no),
+	PRIMARY KEY(u_no),
 	FOREIGN	KEY(h_id)REFERENCES head(h_id)
 );
 
 create table friend(
 	f_id INT NOT NULL,
-	f_noz INT NOT NULL,
-	f_noy INT NOT NULL,
+	u_noz INT NOT NULL,
+	u_noy INT NOT NULL,
 	f_date TIMESTAMP,
 	PRIMARY KEY(f_id), 
 	FOREIGN KEY(u_noz)REFERENCES user(u_no),
