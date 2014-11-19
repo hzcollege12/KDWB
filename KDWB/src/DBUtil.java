@@ -75,3 +75,38 @@ public static sychronized int getMax(String table){
 			}
 	return max;
 }
+
+
+//14号李君海
+pubic static String writeNewDiary(String title,String content,String author){//
+String result = null;
+Connection con = null;
+PreparedStatement ps = null;
+try{
+con = getConnection();
+ps = con.prepareStatement("insert into diary
+(r_id,,r_title,r_content,u_no)" + "values(?,?,?,?);
+int max = getMax(DIARY);
+ps.setInt(1,max);
+ps.setString(2,new String(title.getBytes(CHAR_ENCODING),"ISO-8859-1"));
+ps.setString(3,new String(content.getBytes(CHAR_ENCODING),"ISO-8859-1"));
+int u_no = integer.calueOf(author);
+ps.setInt(4.u_no);
+int count = ps.executeUpdate();
+if(count == 1){
+resu1t = DLARY_SUCCESS;
+}
+else{
+resu1t = DLARY_FAIL;
+}
+return resu1t;
+}catch(Exception e){e.prinStackTrace();}
+finally(
+tr{if(ps != null){ps.close();ps = null;}
+}catch(Exception e){e.printStackTrace();}
+try{
+if(con != null){con.close();con = null;}
+}catch(Exception e){e.printStackTrace();}
+}
+return resu1t;
+}

@@ -1,10 +1,10 @@
-//ServletThread.java   ÀîÔ¶»Ô
+//ServletThread.java   ï¿½ï¿½Ô¶ï¿½ï¿½
 
 
 public class a {
 	
 	
-	package wpf;
+	
 	import java.net.ServerSocket;
 	import java.net.Socket;
 	public class ServerThread extends Thread{
@@ -13,7 +13,7 @@ public class a {
 		public ServerThread(ServerSocket ss){
 			this.ss=ss;
 			flag=true;
-		}
+ 		}
 		public void run(){
 			while(flag){
 				try{

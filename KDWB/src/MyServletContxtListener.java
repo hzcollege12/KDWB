@@ -1,4 +1,4 @@
-//MyServletContextListene ÕÅÐ¡Áú   ÕÅÎ°ÐÛ  215---217
+ //MyServletContextListene ï¿½ï¿½Ð¡ï¿½ï¿½   ï¿½ï¿½Î°ï¿½ï¿½  215---217
 package wyf.wpf;
 import android.app.Activity;
 import android.widget.ListView;
@@ -46,12 +46,12 @@ public void deleteDiary(){
                 mc.dout.writeUTF(msg); 
                 String reply=mc.din.readUTF();
                 if(reply.equals("<#DELETE_DIARY_SUCCESS#>")){
-                Tost.makeText(MyDiaryActivity.this,"É¾³ýÈÕÖ¾³É¹¦£¡",Toast.LENGTH_LONG).show();
+                Tost.makeText(MyDiaryActivity.this,"É¾ï¿½ï¿½ï¿½ï¿½Ö¾ï¿½É¹ï¿½ï¿½ï¿½",Toast.LENGTH_LONG).show();
                     getDiaryList();
                     Looper.loop();
                  }
                  else{
-                 Tost.makeText(MyDiaryActivity.this,"É¾³ýÊ§°Ü£¬ÇëÖØÊÔ£¡",Toast.LENGTH_LONG).show();
+                 Tost.makeText(MyDiaryActivity.this,"É¾ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½",Toast.LENGTH_LONG).show();
                     Looper.loop();
                   }
      }catch(Exception e){e.printStackTrace();}

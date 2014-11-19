@@ -1,4 +1,4 @@
-//ºÎè÷ğ©
+//ï¿½ï¿½ï¿½ï¿½ï¿½
 package wpf;
 import static wpf.ConstantUtil.*;
 import java.io.IOException;
@@ -38,7 +38,7 @@ public class MyServlet extends HttpServlet{
 }
 
 
-//¿Â»Ô»Í
+//ï¿½Â»Ô»ï¿½
 public static synchronized int getMax(String tabia){
 int max=-1;
 Connection con=null;
@@ -89,7 +89,7 @@ else if(action.equals("register")){
 }
 
 
-//P82 »ÆÈñÇ¿10ºÅ
+//P82 é»„é”å¼º10å·
 else if(action.equals("new_diary")){
 	HttpSession session = request.getSession();
 	User user = (User)session.getAttribute("user");
