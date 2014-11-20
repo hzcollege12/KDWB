@@ -1,79 +1,31 @@
- //MyServletContextListene ��С��   ��ΰ��  215---217
-package wyf.wpf;
-import android.app.Activity;
-import android.widget.ListView;
-public class MyDiaryActivity extends Activity{
-	MyConnector mc=null;
-ArrayList<String[]>diaryList=new ArrayList<String[]>();
-ListView lvDiary=null;
-int positionToDelete=-1;
-String uno =null;
-Handler myHandler=new Handler(){
-public void handleMessage(Message msg){
-	switch(msg.what){
-case:0:
-lvDiary.setAdapter(ba);
-break;
+//MyServletContextListene ������ p106
+public class MyServletContxtListener {
+
+
+package wpf;
+import java.net.ServerSocket;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+public class MyServletContextListener implements ServletContextListener{
+         ServerSocket ss=null;
+         ServerThread st=null;
+      public void contextIntitialized(ServletContextEvent sce){
+         try{
+            ss=new ServerSocket(8888);
+            st=new ServerThread(ss);
+            st.start();
+}catch(Exception e){
+e.printStackTrace();
 }
-super.handleMessage(msg);
 }
-};
-BaseeAdapter ba= new BaseAdapter(){
-View.OnClickListener listenerToEdit=new View.OnClickListener(){};
-View.OnClickListener listenerDelete=new View.OnClickListener(){};
-protected void onCreate(Bundle saveInstanceState){
-super.onCreate(saveInstanceState);
-Intent intent=getIntent();
-uno=intent.getStringExtra("uno");
-setContentView(R.layout.diary);
-lvDiary=(ListView)findViewById(R.id.lvDiary);
-getDiaryList();
+public void contextDestroyed(ServletContextEvent sce){
+ try{
+st.flag=false;
+ss.close();
+ss=null;
+st=null;
+}catch(Exception e){
+e.printStackTrace();
 }
-public void deleteDiary(){}
-public void getDiaryList(){}
-protected void onDestroy(){}
 }
-public void deleteDiary(){ 
-    new Thread(){
-     public void run(){
-        Looper.prepare();
-          try{
-                if(mc==null){
-                    mc = new MyConnector(SERVER_ADDRESS,SERVER_PORT);
-                                         }
-                String rid =diaryList.get(position ToDelete)[0];
-                String msg ="<#DELETE_DIARY#>"+rid;
-                mc.dout.writeUTF(msg); 
-                String reply=mc.din.readUTF();
-                if(reply.equals("<#DELETE_DIARY_SUCCESS#>")){
-                Tost.makeText(MyDiaryActivity.this,"ɾ����־�ɹ���",Toast.LENGTH_LONG).show();
-                    getDiaryList();
-                    Looper.loop();
-                 }
-                 else{
-                 Tost.makeText(MyDiaryActivity.this,"ɾ��ʧ�ܣ������ԣ�",Toast.LENGTH_LONG).show();
-                    Looper.loop();
-                  }
-     }catch(Exception e){e.printStackTrace();}
-                  Looper.myLooper().quit();
-         }
-    }.start();
-}
-public void getDiaryList(){
-new Thread(){
-public void run(){
-try{
-mc=new MyConnector(SERVER_ADDRESS,SERVER_PORT);
-mc.dout.writeUTF("<#GET_DIARY#>"+uno+"|"+"1");
-int size=mc.din.readInt();
-diaryList=null;
-diaryList=new ArrayList(String[])();
-for(int i=0;i<size;i++){
-String diaryInfo=mc.din.readUTF();
-String[] sa =diaryInfo.split("\\|");
-diaryList.add(sa);
-}
-myHandler.sendEmptyMessage(0);}
-}
-}.start();
 }
